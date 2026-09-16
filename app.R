@@ -115,15 +115,25 @@ read_bookings <- function() {
 
 booking_version <- function() {
   with_db(function(con) {
+
     x <- DBI::dbGetQuery(
       con,
       paste(
         "SELECT COUNT(*) AS n,",
-        "COALESCE(MAX(booked_at), '') AS latest",
+        "MAX(booked_at) AS latest",
         "FROM bookings"
       )
     )
-    paste(x$n[[1]], x$latest[[1]], sep = "|")
+
+    latest <- x$latest[[1]]
+
+    if (is.na(latest)) {
+      latest <- ""
+    } else {
+      latest <- as.character(latest)
+    }
+
+    paste(x$n[[1]], latest, sep = "|")
   })
 }
 
