@@ -1,0 +1,5 @@
+.Renviron
+phog_bookings.sqlite
+.Rhistory
+.RData
+.Rproj.user/
