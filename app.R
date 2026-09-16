@@ -67,13 +67,12 @@ connect_db <- function() {
   if (use_postgres()) {
     DBI::dbConnect(
       RPostgres::Postgres(),
-      host            = Sys.getenv("ep-lucky-dew-zawsafcp-pooler.c-2.eu-west-2.aws.neon.tech"),
-      port            = as.integer(Sys.getenv("PHOG_DB_PORT", "5432")),
-      dbname          = Sys.getenv("neondb"),
-      user            = Sys.getenv("neondb_owner"),
-      password        = Sys.getenv("Ginola2714!!!"),
-      sslmode         = "require",
-      channel_binding = "require"
+      host     = Sys.getenv("PHOG_DB_HOST"),
+      port     = as.integer(Sys.getenv("PHOG_DB_PORT", "5432")),
+      dbname   = Sys.getenv("PHOG_DB_NAME"),
+      user     = Sys.getenv("PHOG_DB_USER"),
+      password = Sys.getenv("PHOG_DB_PASSWORD"),
+      sslmode  = Sys.getenv("PHOG_DB_SSLMODE", "require")
     )
   } else {
     DBI::dbConnect(
