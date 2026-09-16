@@ -146,6 +146,53 @@ book_slot <- function(slot_id, presenter, talk_title) {
   })
 }
 
+message("========== PHOG DATABASE CONFIG ==========")
+
+message(
+  "PHOG_DB_HOST present: ",
+  nzchar(Sys.getenv("PHOG_DB_HOST"))
+)
+
+message(
+  "PHOG_DB_HOST length: ",
+  nchar(Sys.getenv("PHOG_DB_HOST"))
+)
+
+message(
+  "PHOG_DB_HOST looks like Neon: ",
+  grepl(
+    "neon\\.tech$",
+    trimws(Sys.getenv("PHOG_DB_HOST"))
+  )
+)
+
+message(
+  "PHOG_DB_PORT present: ",
+  nzchar(Sys.getenv("PHOG_DB_PORT"))
+)
+
+message(
+  "PHOG_DB_NAME present: ",
+  nzchar(Sys.getenv("PHOG_DB_NAME"))
+)
+
+message(
+  "PHOG_DB_USER present: ",
+  nzchar(Sys.getenv("PHOG_DB_USER"))
+)
+
+message(
+  "PHOG_DB_PASSWORD present: ",
+  nzchar(Sys.getenv("PHOG_DB_PASSWORD"))
+)
+
+message(
+  "PHOG_DB_SSLMODE present: ",
+  nzchar(Sys.getenv("PHOG_DB_SSLMODE"))
+)
+
+message("==========================================")
+
 init_db()
 
 # ------------------------------------------------------------
