@@ -488,6 +488,17 @@ ui <- fluidPage(
           margin-bottom: 10px;
         }
 
+ /* Duration badge shown in modal header */
+        .duration-badge {
+          float: right;
+          margin-right: 24px;
+          padding: 3px 9px;
+          border-radius: 12px;
+          background: #f1f3f5;
+          color: #555;
+          font-size: 13px;
+          font-weight: 600;
+        }
 
         /* ---------------------------------------------
            Calendar event text wrapping
@@ -869,19 +880,25 @@ server <- function(
           modalDialog(
 
 
-            title = paste0(
+            title = tagList(
+  paste0(
+    "Edit ",
+    slot$meeting_type,
+    " — ",
+    format(
+      slot$date,
+      "%d/%m/%Y"
+    )
+  ),
 
-              "Edit ",
-
-              slot$meeting_type,
-
-              " — ",
-
-              format(
-                slot$date,
-                "%d/%m/%Y"
-              )
-            ),
+  tags$span(
+    class = "duration-badge",
+    paste0(
+      slot$duration_minutes,
+      " min"
+    )
+  )
+),
 
 
             tags$p(
@@ -968,25 +985,25 @@ server <- function(
         modalDialog(
 
 
-          title = paste0(
+          title = tagList(
+  paste0(
+    "Book ",
+    slot$meeting_type,
+    " — ",
+    format(
+      slot$date,
+      "%d/%m/%Y"
+    )
+  ),
 
-            "Book ",
-
-            slot$meeting_type,
-
-            " — ",
-
-            format(
-              slot$date,
-              "%d/%m/%Y"
-            ),
-
-            " (",
-
-            slot$duration_minutes,
-
-            " min)"
-          ),
+  tags$span(
+    class = "duration-badge",
+    paste0(
+      slot$duration_minutes,
+      " min"
+    )
+  )
+),
 
 
           textInput(
